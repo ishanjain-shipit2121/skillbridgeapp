@@ -1,0 +1,87 @@
+import { DSAQuestion, LearningResource } from '../types';
+
+export const dsaQuestions: Record<string, DSAQuestion[]> = {
+  Google: [
+    { id: 1, title: 'Two Sum', difficulty: 'Easy', topic: 'Arrays', leetcodeUrl: 'https://leetcode.com/problems/two-sum/' },
+    { id: 2, title: 'LRU Cache', difficulty: 'Hard', topic: 'Design', leetcodeUrl: 'https://leetcode.com/problems/lru-cache/' },
+    { id: 3, title: 'Merge Intervals', difficulty: 'Medium', topic: 'Arrays', leetcodeUrl: 'https://leetcode.com/problems/merge-intervals/' },
+    { id: 4, title: 'Word Search II', difficulty: 'Hard', topic: 'Backtracking', leetcodeUrl: 'https://leetcode.com/problems/word-search-ii/' },
+    { id: 5, title: 'Valid Parentheses', difficulty: 'Easy', topic: 'Stack', leetcodeUrl: 'https://leetcode.com/problems/valid-parentheses/' },
+    { id: 6, title: 'Trapping Rain Water', difficulty: 'Hard', topic: 'Two Pointers', leetcodeUrl: 'https://leetcode.com/problems/trapping-rain-water/' },
+    { id: 7, title: 'Binary Tree Level Order', difficulty: 'Medium', topic: 'Trees', leetcodeUrl: 'https://leetcode.com/problems/binary-tree-level-order-traversal/' },
+    { id: 8, title: 'Course Schedule', difficulty: 'Medium', topic: 'Graphs', leetcodeUrl: 'https://leetcode.com/problems/course-schedule/' },
+    { id: 9, title: 'Median of Two Sorted Arrays', difficulty: 'Hard', topic: 'Binary Search', leetcodeUrl: 'https://leetcode.com/problems/median-of-two-sorted-arrays/' },
+    { id: 10, title: 'Longest Substring Without Repeating', difficulty: 'Medium', topic: 'Sliding Window', leetcodeUrl: 'https://leetcode.com/problems/longest-substring-without-repeating-characters/' },
+  ],
+  Amazon: [
+    { id: 1, title: 'Two Sum', difficulty: 'Easy', topic: 'Arrays', leetcodeUrl: 'https://leetcode.com/problems/two-sum/' },
+    { id: 2, title: 'Group Anagrams', difficulty: 'Medium', topic: 'Hash Table', leetcodeUrl: 'https://leetcode.com/problems/group-anagrams/' },
+    { id: 3, title: 'Number of Islands', difficulty: 'Medium', topic: 'Graphs', leetcodeUrl: 'https://leetcode.com/problems/number-of-islands/' },
+    { id: 4, title: 'Word Ladder', difficulty: 'Hard', topic: 'BFS', leetcodeUrl: 'https://leetcode.com/problems/word-ladder/' },
+    { id: 5, title: 'Meeting Rooms II', difficulty: 'Medium', topic: 'Greedy', leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms-ii/' },
+    { id: 6, title: 'Design Underground System', difficulty: 'Medium', topic: 'Design', leetcodeUrl: 'https://leetcode.com/problems/design-underground-system/' },
+    { id: 7, title: 'Rotting Oranges', difficulty: 'Medium', topic: 'BFS', leetcodeUrl: 'https://leetcode.com/problems/rotting-oranges/' },
+    { id: 8, title: 'Merge k Sorted Lists', difficulty: 'Hard', topic: 'Heap', leetcodeUrl: 'https://leetcode.com/problems/merge-k-sorted-lists/' },
+    { id: 9, title: 'Container With Most Water', difficulty: 'Medium', topic: 'Two Pointers', leetcodeUrl: 'https://leetcode.com/problems/container-with-most-water/' },
+    { id: 10, title: 'Climbing Stairs', difficulty: 'Easy', topic: 'DP', leetcodeUrl: 'https://leetcode.com/problems/climbing-stairs/' },
+  ],
+  Microsoft: [
+    { id: 1, title: 'Reverse Linked List', difficulty: 'Easy', topic: 'Linked List', leetcodeUrl: 'https://leetcode.com/problems/reverse-linked-list/' },
+    { id: 2, title: 'Validate Binary Search Tree', difficulty: 'Medium', topic: 'Trees', leetcodeUrl: 'https://leetcode.com/problems/validate-binary-search-tree/' },
+    { id: 3, title: 'Decode String', difficulty: 'Medium', topic: 'Stack', leetcodeUrl: 'https://leetcode.com/problems/decode-string/' },
+    { id: 4, title: 'Maximal Rectangle', difficulty: 'Hard', topic: 'DP', leetcodeUrl: 'https://leetcode.com/problems/maximal-rectangle/' },
+    { id: 5, title: 'Product of Array Except Self', difficulty: 'Medium', topic: 'Arrays', leetcodeUrl: 'https://leetcode.com/problems/product-of-array-except-self/' },
+    { id: 6, title: 'Spiral Matrix', difficulty: 'Medium', topic: 'Arrays', leetcodeUrl: 'https://leetcode.com/problems/spiral-matrix/' },
+    { id: 7, title: 'Clone Graph', difficulty: 'Medium', topic: 'Graphs', leetcodeUrl: 'https://leetcode.com/problems/clone-graph/' },
+    { id: 8, title: 'LFU Cache', difficulty: 'Hard', topic: 'Design', leetcodeUrl: 'https://leetcode.com/problems/lfu-cache/' },
+    { id: 9, title: 'Binary Tree Zigzag Level Order', difficulty: 'Medium', topic: 'Trees', leetcodeUrl: 'https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/' },
+    { id: 10, title: 'String to Integer (atoi)', difficulty: 'Medium', topic: 'Strings', leetcodeUrl: 'https://leetcode.com/problems/string-to-integer-atoi/' },
+  ],
+  Flipkart: [
+    { id: 1, title: 'Three Sum', difficulty: 'Medium', topic: 'Arrays', leetcodeUrl: 'https://leetcode.com/problems/3sum/' },
+    { id: 2, title: 'Design Twitter', difficulty: 'Medium', topic: 'Design', leetcodeUrl: 'https://leetcode.com/problems/design-twitter/' },
+    { id: 3, title: 'Min Stack', difficulty: 'Medium', topic: 'Stack', leetcodeUrl: 'https://leetcode.com/problems/min-stack/' },
+    { id: 4, title: 'Dijkstra Algorithm', difficulty: 'Medium', topic: 'Graphs', leetcodeUrl: 'https://leetcode.com/problems/network-delay-time/' },
+    { id: 5, title: 'Add Two Numbers', difficulty: 'Medium', topic: 'Linked List', leetcodeUrl: 'https://leetcode.com/problems/add-two-numbers/' },
+    { id: 6, title: 'Partition Equal Subset Sum', difficulty: 'Medium', topic: 'DP', leetcodeUrl: 'https://leetcode.com/problems/partition-equal-subset-sum/' },
+    { id: 7, title: 'Top K Frequent Elements', difficulty: 'Medium', topic: 'Heap', leetcodeUrl: 'https://leetcode.com/problems/top-k-frequent-elements/' },
+    { id: 8, title: 'Longest Common Subsequence', difficulty: 'Medium', topic: 'DP', leetcodeUrl: 'https://leetcode.com/problems/longest-common-subsequence/' },
+    { id: 9, title: 'Subarray Sum Equals K', difficulty: 'Medium', topic: 'Prefix Sum', leetcodeUrl: 'https://leetcode.com/problems/subarray-sum-equals-k/' },
+    { id: 10, title: 'Flatten Binary Tree to Linked List', difficulty: 'Medium', topic: 'Trees', leetcodeUrl: 'https://leetcode.com/problems/flatten-binary-tree-to-linked-list/' },
+  ],
+  Zomato: [
+    { id: 1, title: 'Two Sum', difficulty: 'Easy', topic: 'Arrays', leetcodeUrl: 'https://leetcode.com/problems/two-sum/' },
+    { id: 2, title: 'Best Time to Buy and Sell Stock', difficulty: 'Easy', topic: 'DP', leetcodeUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock/' },
+    { id: 3, title: 'LRU Cache', difficulty: 'Hard', topic: 'Design', leetcodeUrl: 'https://leetcode.com/problems/lru-cache/' },
+    { id: 4, title: 'Course Schedule II', difficulty: 'Medium', topic: 'Graphs', leetcodeUrl: 'https://leetcode.com/problems/course-schedule-ii/' },
+    { id: 5, title: 'Merge Sorted Arrays', difficulty: 'Easy', topic: 'Two Pointers', leetcodeUrl: 'https://leetcode.com/problems/merge-sorted-array/' },
+    { id: 6, title: 'Lowest Common Ancestor', difficulty: 'Medium', topic: 'Trees', leetcodeUrl: 'https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/' },
+    { id: 7, title: 'Coin Change', difficulty: 'Medium', topic: 'DP', leetcodeUrl: 'https://leetcode.com/problems/coin-change/' },
+    { id: 8, title: 'K Closest Points to Origin', difficulty: 'Medium', topic: 'Heap', leetcodeUrl: 'https://leetcode.com/problems/k-closest-points-to-origin/' },
+    { id: 9, title: 'Search in Rotated Sorted Array', difficulty: 'Medium', topic: 'Binary Search', leetcodeUrl: 'https://leetcode.com/problems/search-in-rotated-sorted-array/' },
+    { id: 10, title: 'House Robber', difficulty: 'Medium', topic: 'DP', leetcodeUrl: 'https://leetcode.com/problems/house-robber/' },
+  ],
+};
+
+export const learningResources: LearningResource[] = [
+  // DSA
+  { name: 'Take U Forward (Striver)', learn: 'Complete DSA from scratch to advanced', isFree: true, url: 'https://takeuforward.org/', category: 'dsa' },
+  { name: 'Love Babbar DSA Sheet', learn: '450 most important DSA problems', isFree: true, url: 'https://450dsa.com/', category: 'dsa' },
+  { name: 'NeetCode 150', learn: 'Blind 75 + 75 more curated problems', isFree: true, url: 'https://neetcode.io/', category: 'dsa' },
+  { name: 'Coursera: Algorithms', learn: 'Princeton algorithms course', isFree: false, url: 'https://www.coursera.org/specializations/algorithms', category: 'dsa' },
+  // AI-ML
+  { name: 'Andrew Ng ML Course', learn: 'Foundations of machine learning', isFree: true, url: 'https://www.coursera.org/learn/machine-learning', category: 'aiml' },
+  { name: 'fast.ai', learn: 'Practical deep learning for coders', isFree: true, url: 'https://www.fast.ai/', category: 'aiml' },
+  { name: 'Kaggle Learn', learn: 'Hands-on ML and data science', isFree: true, url: 'https://www.kaggle.com/learn', category: 'aiml' },
+  { name: 'DeepLearning.AI Specialization', learn: 'Deep learning from Andrew Ng', isFree: false, url: 'https://www.coursera.org/specializations/deep-learning', category: 'aiml' },
+  // Web
+  { name: 'freeCodeCamp', learn: 'Full web development certification', isFree: true, url: 'https://www.freecodecamp.org/', category: 'web' },
+  { name: 'The Odin Project', learn: 'Full stack web development path', isFree: true, url: 'https://www.theodinproject.com/', category: 'web' },
+  { name: 'JavaScript.info', learn: 'Modern JavaScript from basics to advanced', isFree: true, url: 'https://javascript.info/', category: 'web' },
+  { name: 'Frontend Masters', learn: 'Advanced frontend engineering', isFree: false, url: 'https://frontendmasters.com/', category: 'web' },
+  // App
+  { name: 'React Native Docs', learn: 'Build mobile apps with React', isFree: true, url: 'https://reactnative.dev/', category: 'app' },
+  { name: 'Flutter Documentation', learn: 'Cross-platform apps with Dart', isFree: true, url: 'https://flutter.dev/docs', category: 'app' },
+  { name: 'Expo Tutorials', learn: 'Ship React Native apps faster', isFree: true, url: 'https://docs.expo.dev/tutorial/', category: 'app' },
+  { name: 'Udemy React Native', learn: 'Complete React Native course', isFree: false, url: 'https://www.udemy.com/course/the-complete-react-native-and-redux-course/', category: 'app' },
+];
