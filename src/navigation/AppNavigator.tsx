@@ -13,6 +13,7 @@ import DSATrackScreen from '../screens/DSATrackScreen';
 import LearningTracksScreen from '../screens/LearningTracksScreen';
 import ChatScreen from '../screens/ChatScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import ProfileAnalysisScreen from '../screens/ProfileAnalysisScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,7 +31,7 @@ function TabNavigator() {
           paddingBottom: 8,
           paddingTop: 4,
         },
-        tabBarActiveTintColor: Colors.accent,
+        tabBarActiveTintColor: Colors.neonCyan,
         tabBarInactiveTintColor: Colors.textMuted,
         tabBarLabelStyle: { fontSize: 12 },
         tabBarIcon: ({ color, size }) => {
@@ -73,9 +74,39 @@ export default function AppNavigator() {
       <Stack.Navigator screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Main" component={TabNavigator} />
-        <Stack.Screen name="LearningTracks" component={LearningTracksScreen} options={{ headerShown: true, headerTitle: 'Learning Tracks', headerStyle: { backgroundColor: Colors.card }, headerTintColor: Colors.text }} />
-        <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: true, headerTitle: 'Profile', headerStyle: { backgroundColor: Colors.card }, headerTintColor: Colors.text }} />
+        <Stack.Screen
+          name="LearningTracks"
+          component={LearningTracksScreen}
+          options={{
+            headerShown: true,
+            headerTitle: 'Learning Tracks',
+            headerStyle: { backgroundColor: Colors.card },
+            headerTintColor: Colors.text,
+          }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{
+            headerShown: true,
+            headerTitle: 'Profile',
+            headerStyle: { backgroundColor: Colors.card },
+            headerTintColor: Colors.text,
+          }}
+        />
+        <Stack.Screen
+          name="ProfileAnalysis"
+          component={ProfileAnalysisScreen}
+          options={{
+            headerShown: true,
+            headerTitle: 'Analyze Your Profile',
+            headerStyle: { backgroundColor: Colors.card },
+            headerTintColor: Colors.text,
+            headerTitleStyle: { color: Colors.text },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+

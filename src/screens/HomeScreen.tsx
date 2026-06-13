@@ -7,9 +7,9 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 type Props = { navigation: NativeStackNavigationProp<any> };
 
 const features = [
-  { icon: 'map-outline' as keyof typeof Ionicons.glyphMap, title: 'AI Roadmap', desc: 'Personalized career path', color: '#6366F1' },
-  { icon: 'code-slash-outline' as keyof typeof Ionicons.glyphMap, title: 'DSA Track', desc: 'Company-wise questions', color: '#22C55E' },
-  { icon: 'bulb-outline' as keyof typeof Ionicons.glyphMap, title: 'Learn AI/ML', desc: 'ML from scratch', color: '#F59E0B' },
+  { icon: 'map-outline' as keyof typeof Ionicons.glyphMap, title: 'AI Roadmap', desc: 'Personalized career path', color: Colors.neonCyan },
+  { icon: 'code-slash-outline' as keyof typeof Ionicons.glyphMap, title: 'DSA Track', desc: 'Company-wise questions', color: Colors.neonGreen },
+  { icon: 'bulb-outline' as keyof typeof Ionicons.glyphMap, title: 'Learn AI/ML', desc: 'ML from scratch', color: Colors.neonYellow },
   { icon: 'globe-outline' as keyof typeof Ionicons.glyphMap, title: 'Web Dev', desc: 'Full stack path', color: '#3B82F6' },
 ];
 
@@ -25,7 +25,7 @@ export default function HomeScreen({ navigation }: Props) {
         onPress={() => navigation.navigate('QuizTab')}
         activeOpacity={0.85}
       >
-        <Ionicons name="play-circle" size={28} color="#fff" />
+        <Ionicons name="play-circle" size={28} color="#000" />
         <Text style={styles.startButtonText}>Start Skill Quiz</Text>
       </TouchableOpacity>
 
@@ -34,7 +34,7 @@ export default function HomeScreen({ navigation }: Props) {
         {features.map((f, i) => (
           <TouchableOpacity
             key={i}
-            style={styles.featureCard}
+            style={[styles.featureCard, { borderLeftColor: f.color }]}
             onPress={() => {
               if (f.title === 'AI Roadmap') navigation.navigate('RoadmapTab');
               else if (f.title === 'DSA Track') navigation.navigate('DSATab');
@@ -51,13 +51,42 @@ export default function HomeScreen({ navigation }: Props) {
         ))}
       </View>
 
-      <TouchableOpacity
-        style={styles.profileButton}
-        onPress={() => navigation.navigate('Profile')}
-      >
-        <Ionicons name="person-circle-outline" size={24} color={Colors.accent} />
-        <Text style={styles.profileButtonText}>View Profile</Text>
-      </TouchableOpacity>
+      <View style={styles.ctaSection}>
+        <TouchableOpacity
+          style={styles.profileAnalysisButton}
+          onPress={() => navigation.navigate('ProfileAnalysis', { dreamRole: 'Full Stack Developer', skills: [] })}
+        >
+          <View style={styles.profileAnalysisContent}>
+            <View style={styles.profileAnalysisIconContainer}>
+              <Ionicons name="analytics" size={24} color={Colors.neonGreen} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.profileAnalysisTitle}>GitHub & LinkedIn Analysis</Text>
+              <Text style={styles.profileAnalysisDesc}>Connect your profiles to see skill gaps vs your dream role</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={24} color={Colors.neonGreen} />
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.profileButton}
+          onPress={() => navigation.navigate('Profile')}
+        >
+          <Ionicons name="person-circle-outline" size={24} color={Colors.neonCyan} />
+          <Text style={styles.profileButtonText}>View Your Profile</Text>
+          <Ionicons name="chevron-forward" size={20} color={Colors.neonCyan} />
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.infoCard}>
+        <View style={styles.infoHeader}>
+          <Ionicons name="bulb" size={20} color={Colors.neonPink} />
+          <Text style={styles.infoTitle}>Pro Tip</Text>
+        </View>
+        <Text style={styles.infoText}>
+          Take the quiz first to get your personalized roadmap, then connect your GitHub & LinkedIn to identify exactly which skills to prioritize.
+        </Text>
+      </View>
     </ScrollView>
   );
 }
@@ -69,29 +98,34 @@ const styles = StyleSheet.create({
   welcome: { color: Colors.text, fontSize: FontSizes.heading, fontWeight: 'bold', marginTop: Spacing.xs },
   subtitle: { color: Colors.textMuted, fontSize: FontSizes.body, marginTop: Spacing.sm, marginBottom: Spacing.xl },
   startButton: {
-    backgroundColor: Colors.accent,
+    backgroundColor: Colors.neonCyan,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: Spacing.lg,
     borderRadius: 16,
     gap: 12,
-    shadowColor: Colors.accent,
+    shadowColor: Colors.neonCyan,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 6,
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
+    elevation: 8,
+    marginBottom: Spacing.xl,
   },
-  startButtonText: { color: '#fff', fontSize: FontSizes.subtitle, fontWeight: 'bold' },
-  sectionTitle: { color: Colors.text, fontSize: FontSizes.title, fontWeight: 'bold', marginTop: Spacing.xl, marginBottom: Spacing.md },
-  featuresGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
+  startButtonText: { color: '#000', fontSize: FontSizes.subtitle, fontWeight: 'bold' },
+  sectionTitle: { color: Colors.text, fontSize: FontSizes.title, fontWeight: 'bold', marginBottom: Spacing.md },
+  featuresGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginBottom: Spacing.xl },
   featureCard: {
     backgroundColor: Colors.card,
     width: '47%',
     padding: Spacing.md,
     borderRadius: 16,
     borderLeftWidth: 3,
-    borderLeftColor: Colors.accent,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   featureIcon: {
     width: 48,
@@ -103,15 +137,64 @@ const styles = StyleSheet.create({
   },
   featureTitle: { color: Colors.text, fontSize: FontSizes.body, fontWeight: '600' },
   featureDesc: { color: Colors.textMuted, fontSize: 14, marginTop: 4 },
+
+  ctaSection: { gap: Spacing.md, marginBottom: Spacing.xl },
+  profileAnalysisButton: {
+    backgroundColor: Colors.card,
+    borderRadius: 16,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: Colors.neonGreen + '30',
+    shadowColor: Colors.neonGreen,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  profileAnalysisContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: Spacing.lg,
+    gap: Spacing.md,
+  },
+  profileAnalysisIconContainer: {
+    width: 52,
+    height: 52,
+    borderRadius: 12,
+    backgroundColor: Colors.neonGreen + '15',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profileAnalysisTitle: { color: Colors.text, fontSize: 14, fontWeight: '600', marginBottom: 4 },
+  profileAnalysisDesc: { color: Colors.textMuted, fontSize: 12, lineHeight: 18 },
+
   profileButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: Spacing.xl,
-    padding: Spacing.md,
+    justifyContent: 'space-between',
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
     borderRadius: 12,
     backgroundColor: Colors.card,
-    gap: 8,
+    borderWidth: 1,
+    borderColor: Colors.neonCyan + '30',
+    shadowColor: Colors.neonCyan,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 3,
   },
-  profileButtonText: { color: Colors.accent, fontSize: FontSizes.body, fontWeight: '600' },
+  profileButtonText: { color: Colors.text, fontSize: FontSizes.body, fontWeight: '600', flex: 1, marginLeft: Spacing.md },
+
+  infoCard: {
+    backgroundColor: Colors.card,
+    borderLeftColor: Colors.neonPink,
+    borderLeftWidth: 3,
+    padding: Spacing.md,
+    borderRadius: 12,
+    marginTop: Spacing.lg,
+  },
+  infoHeader: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm, marginBottom: Spacing.sm },
+  infoTitle: { color: Colors.neonPink, fontSize: 14, fontWeight: 'bold' },
+  infoText: { color: Colors.textSecondary, fontSize: 14, lineHeight: 20 },
 });

@@ -48,3 +48,67 @@ export interface UserProfile {
   dsaSolved: number;
   streakDays: number;
 }
+
+export interface RoadmapMilestone {
+  title: string;
+  description: string;
+  estimatedHours: number;
+}
+
+export interface RoadmapProject {
+  name: string;
+  description: string;
+  estimatedHours: number;
+  difficulty: 'Easy' | 'Medium' | 'Hard';
+}
+
+export interface RoadmapResource {
+  type: 'video' | 'article' | 'course';
+  title: string;
+  url?: string;
+}
+
+export interface EnhancedRoadmapWeek extends RoadmapWeek {
+  milestones?: RoadmapMilestone[];
+  projects?: RoadmapProject[];
+  resources?: RoadmapResource[];
+  keyTopics?: string[];
+}
+
+export interface EnhancedRoadmap extends Roadmap {
+  weeks: EnhancedRoadmapWeek[];
+}
+
+export interface GithubProfile {
+  username: string;
+  repositories: number;
+  stars: number;
+  followers: number;
+  languages: string[];
+}
+
+export interface LinkedInProfile {
+  profileUrl: string;
+  headline: string;
+  skills: string[];
+  endorsements: Record<string, number>;
+}
+
+export interface SkillGap {
+  skill: string;
+  currentLevel: 'Beginner' | 'Intermediate' | 'Advanced';
+  requiredLevel: 'Beginner' | 'Intermediate' | 'Advanced';
+  priority: 'Must' | 'Should' | 'Nice';
+  suggestedResources: RoadmapResource[];
+  timelineWeeks: number;
+}
+
+export interface ProfileAnalysisResult {
+  github?: GithubProfile;
+  linkedin?: LinkedInProfile;
+  skillGaps: SkillGap[];
+  recommendations: string[];
+  overallScore: number;
+  strengthAreas: string[];
+  improvementAreas: string[];
+}

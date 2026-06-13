@@ -14,7 +14,7 @@ export async function generateRoadmap(answers: QuizAnswers): Promise<Roadmap> {
     return getMockRoadmap(answers);
   }
 
-  const prompt = `You are a career advisor for Indian engineering students. Based on the following quiz answers, generate a personalized skill development roadmap.
+  const prompt = `You are a career advisor for Indian engineering students. Based on the following quiz answers, generate a DETAILED personalized skill development roadmap with specific milestones, projects, and resources.
 
 Current skills: ${answers.skills.join(', ') || 'None'}
 Dream role: ${answers.dreamRole}
@@ -26,12 +26,35 @@ Return ONLY valid JSON in this exact format (no markdown, no code fences):
 {
   "skillGaps": ["skill1", "skill2", "skill3"],
   "weeks": [
-    {"week": 1, "topic": "Topic Name", "resources": "Resource name (website/book)", "estimatedHours": 10},
-    {"week": 2, "topic": "Topic Name", "resources": "Resource name", "estimatedHours": 12}
+    {
+      "week": 1,
+      "topic": "Topic Name",
+      "resources": "Resource name (website/book)",
+      "estimatedHours": 10,
+      "milestones": [
+        {"title": "Learn Basics", "description": "Understand core concepts", "estimatedHours": 5},
+        {"title": "First Project", "description": "Build a simple project", "estimatedHours": 5}
+      ],
+      "projects": [
+        {"name": "Todo App", "description": "Build a basic todo application", "estimatedHours": 8, "difficulty": "Easy"}
+      ],
+      "resources": [
+        {"type": "video", "title": "Topic Fundamentals"},
+        {"type": "article", "title": "Best Practices Guide"},
+        {"type": "course", "title": "Complete Course"}
+      ],
+      "keyTopics": ["Concept1", "Concept2", "Concept3"]
+    }
   ]
 }
 
-Generate 8-12 weeks of roadmap. Make it practical and specific for Indian engineering students.`;
+Generate 8-12 weeks of roadmap. For each week include:
+- 2-3 milestones with descriptions
+- 1-2 hands-on projects
+- 3-4 learning resources by type (video/article/course)
+- 4-5 key topics to master
+
+Make it practical, specific, and inspiring for Indian engineering students. Include project ideas they can show in interviews.`;
 
   try {
     const response = await fetch(GROQ_API_URL, {
@@ -44,7 +67,7 @@ Generate 8-12 weeks of roadmap. Make it practical and specific for Indian engine
         model: MODEL,
         messages: [{ role: 'user', content: prompt }],
         temperature: 0.7,
-        max_tokens: 2000,
+        max_tokens: 3000,
       }),
     });
 
@@ -113,6 +136,19 @@ function getMockRoadmap(answers: QuizAnswers): Roadmap {
     topic,
     resources: `freeCodeCamp ${topic} Course / ${topic} YouTube Playlist`,
     estimatedHours: Math.min(hoursPerWeek + 2, 15),
+    milestones: [
+      { title: `Learn ${topic} Basics`, description: `Master fundamental concepts of ${topic}`, estimatedHours: Math.floor((hoursPerWeek + 2) / 2) },
+      { title: `Build ${topic} Project`, description: `Create a practical project using ${topic}`, estimatedHours: Math.ceil((hoursPerWeek + 2) / 2) },
+    ],
+    projects: [
+      { name: `${topic} Learning Project`, description: `Build a real-world project using ${topic}`, estimatedHours: 12, difficulty: 'Medium' as const },
+    ],
+    resources: [
+      { type: 'video' as const, title: `${topic} Fundamentals` },
+      { type: 'course' as const, title: `Complete ${topic} Guide` },
+      { type: 'article' as const, title: `${topic} Best Practices` },
+    ],
+    keyTopics: [`${topic} Core Concepts`, 'Best Practices', 'Performance Optimization'],
   }));
 
   return { skillGaps: filtered.length > 0 ? filtered : gaps, weeks };
@@ -131,3 +167,4 @@ function getMockChatResponse(message: string): string {
   }
   return 'I recommend starting with a clear goal, breaking it into weekly milestones, and tracking your progress. What specific area would you like guidance on?';
 }
+
